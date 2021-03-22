@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      서명을 해주세요 
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div #fixedContainer>
+		<ion-row>
+		  <ion-col *ngFor="let color of colors" [style.background]="color" class="color-block" tappable (click)="selectColor(color)"></ion-col>
+		</ion-row>
+	 
+		<ion-row radio-group [(ngModel)]="selectedColor">
+		  <ion-col *ngFor="let color of colors" text-center>
+			<ion-radio [value]="color"></ion-radio>
+		  </ion-col>
+		</ion-row>
+	 
+
+		<!-- <ion-row radio-group [(ngModel)]="selectedFlag">
+			<ion-col *ngFor="let v of values" text-center>
+			  <ion-radio [value]="v"></ion-radio>
+			</ion-col>
+		  </ion-row> -->
+
+		  
+		  <!-- <img id="html5" src="http://www.w3.org/html/logo/img/mark-word-icon.png" /> -->
+		
+		<!-- <canvas 
+		  style="    position: absolute;" id="canvas2" #imageCanvas2 ></canvas> -->
+		<canvas  id="canvas" style="     width: 380px;
+    height: 400px;
+    position: absolute;
+    border: solid 1px;
+    margin: auto;
+    text-align: center;
+    left: 5%;
+    right: 5%;" #imageCanvas (touchstart)="startDrawing(event);" (touchmove)="moved($event)"></canvas>
+		<!-- <img style="width:500px; height: 500px;" src="./../../assets/imgs/logo.png"/> -->
+
+		<p  style="
+		margin-top: 450px;" ></p>
+		<button ion-button full (click)="saveCanvasImage()">서명 완료 </button>
+	 
+	  </div>
+</ion-content>

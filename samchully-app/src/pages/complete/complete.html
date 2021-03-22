@@ -1,0 +1,190 @@
+<ion-content>
+  <div class="logo">
+    <img src="./assets/imgs/samchully-es-logo.png" (click)="goback()" alt="logo">
+  </div>
+  <div class="flag7">
+    <header>
+      <div class="header-msg" id="flag7-header-msg">AS처리</div>
+      <div class="flag7-info">
+        <table class="flag7-table">
+          <tr>
+            <td rowspan=2 class="flag7-icon" style="">
+              <ion-icon ios="ios-home" md="md-home" (click)="info_display(true)"></ion-icon>
+            </td>
+            <td class="flag7-name">{{list.as_applicant}}</td>
+            <td class="flag7-as"><a href="#">AS이력</a></td>
+          </tr>
+          <tr>
+            <td class="flag7-name"><input type="text" [(ngModel)]="subname" placeholder="{{list.customer_receiptionist}}"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="flag7-manager">{{list.customer}}, {{phone_replace(list.as_applicant_phone)}}</div>
+    </header>
+    <article class="flag7-article">
+      <div class="info">
+        <table>
+          <tr>
+            <td class="info-td-width">모델명</td>
+            <td>{{list.product_model}}</td>
+          </tr>
+          <tr>
+            <td class="info-td-width">시리얼넘버</td>
+            <td>{{list.serial}}</td>
+          </tr>
+          <tr>
+            <td class="info-td-width">주소</td>
+            <td>{{list.address}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="flag7-contents">
+        <table class="flag7-table-contents">
+          <tr class="flag7-table-tr">
+            <td colspan=3>접수번호 &nbsp;&nbsp; {{list.receipt_number}}</td>
+          </tr>
+          <tr class="flag7-table-tr">
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">고장증상</td>
+            <td class="flag7-table-td-third" (click)="takephoto(1)">
+              <ion-icon ios="ios-image" md="md-image"></ion-icon>
+              <span>동영상 및 사진</span>
+              <ion-icon ios="ios-add" md="md-add"></ion-icon>
+            </td>
+          </tr>
+          <tr *ngIf="imageurl!=''">
+            <img src="{{imageurl}}" (click)="photo_view(imageurl)"/>
+          </tr>
+          <tr *ngIf="videourl!=''" style="height: 30px;">
+            <a href="{{videourl}}" style="position: absolute;">동영상 재생</a>
+          </tr>
+          <tr class="flag7-table-tr">
+            <td colspan=3 style="width:100%"><input type="text" placeholder="{{list.receipt_content}}" [(ngModel)]="list.receipt_content" class="flag7-input-contents"></td>
+          </tr>
+          <tr class="flag7-table-tr">
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">에러코드</td>
+            <td class="flag7-table-td-third" id="flag7-radio-align">
+              <select name="flag7-error" [(ngModel)]="error_code" id="">
+                <option  *ngFor="let a of errorlist"  value="{{a.remote_code}}"> {{a.remote_code}}</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="flag7-table-tr">
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">AS완료</td>
+            <td class="flag7-table-td-third" (click)="takephoto(2)">
+              <ion-icon ios="ios-image" md="md-image"></ion-icon>
+              <span>동영상 및 사진</span>
+              <ion-icon ios="ios-add" md="md-add"></ion-icon>
+            </td>
+          </tr>
+          <tr *ngIf="imageurl2!=''">
+            <img src="{{imageurl2}}" (click)="photo_view(imageurl2)"/>
+          </tr>
+          <tr *ngIf="videourl2!=''" style="height: 30px;">
+            <a href="{{videourl2}}" style="position: absolute;">동영상 재생</a>
+          </tr>
+          <tr class="flag7-table-tr">
+            <td colspan=3 style="width:100%"><input type="text" [(ngModel)]="list.complete_text" class="flag7-input-contents"></td>
+          </tr>
+
+          <tr class="flag7-table-tr">
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">완료코드</td>
+            <td class="flag7-table-td-third" id="flag7-radio-align">
+              <select name="flag7-error" [(ngModel)]="list.complete_code" id="">
+                <option value="">선택해주세요</option>
+                <option value="부품교체">부품교체</option>
+                <option value="조작미숙">조작미숙</option>
+                <option value="공사불량">공사불량</option>
+                <option value="통신불량">통신불량</option>
+                <option value="소비자취소">소비자취소</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="flag7-table-tr">
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">미결코드</td>
+            <td class="flag7-table-td-third" id="flag7-radio-align">
+              <select name="flag7-error" [(ngModel)]="list.unprocess_code" id="">
+                <option value="">없음</option>
+                <option value="견적 후 처리(대기)" checked>견적 후 처리(대기)</option>
+                <option value="부품대기">부품대기</option>
+                <option value="미처리">미처리</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="flag7-table-tr">
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">미처리내용</td>
+          </tr>
+          <tr class="flag7-table-tr">
+            <td colspan=3 style="width:100%"><input type="text" [(ngModel)]="list.yet_text" class="flag7-input-contents"></td>
+          </tr>
+          <tr class="flag7-table-tr">
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">고객확인</td>
+            <td class="flag7-table-td-third" (click)="sign()">
+              <ion-icon ios="ios-image" md="md-image"></ion-icon>
+              <span>이름 및 싸인</span>
+              <ion-icon ios="ios-add" md="md-add"></ion-icon>
+            </td>
+          </tr>
+          <tr *ngIf="imageurl3!=''">
+            <img src="{{imageurl3}}" (click)="photo_view(imageurl3)"/>
+          </tr>
+
+          <tr>
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">처리예정일</td>
+            <td class="flag7-table-td-third" style="text-align: center;">
+              <input type="date" name="flag2-date" [(ngModel)]="list.due_date" style="width: 100%; height: 100%; text-align: center;">
+            </td>
+          </tr>
+
+          <tr>
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">처리예정시간</td>
+            <td class="flag7-table-td-third" style="text-align: center;">
+              <input type="time" name="flag2-date" [(ngModel)]="list.due_time" style="width: 100%; height: 100%; text-align: center;">
+            </td>
+          </tr>
+
+          <!--      ****       원본     ****
+          <tr>
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">처리예정일</td>
+            <td class="flag7-table-td-third" *ngIf="list.status!='접수'" style="text-align: center;">              
+              <input type="date" name="flag2-date" [(ngModel)]="list.due_date" style="width: 100%; height: 100%; text-align: center;" readonly>
+            </td>
+            <td class="flag7-table-td-third" *ngIf="list.status=='접수'" style="text-align: center;">
+              <input type="date" name="flag2-date" [(ngModel)]="list.due_date" style="width: 100%; height: 100%; text-align: center;">
+            </td>
+          </tr>
+
+          <tr>
+            <td class="flag7-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag7-table-td-second">처리예정시간</td>
+            <td class="flag7-table-td-third" *ngIf="list.status!='접수'" style="text-align: center;">
+              <input type="time" name="flag2-date" [(ngModel)]="list.due_time" style="width: 100%; height: 100%; text-align: center;" readonly>
+            </td>
+            <td class="flag7-table-td-third" *ngIf="list.status=='접수'" style="text-align: center;">
+              <input type="time" name="flag2-date" [(ngModel)]="list.due_time" style="width: 100%; height: 100%; text-align: center;">
+            </td>
+          </tr>
+          -->
+
+        </table>
+        <div class="flag-send" style="margin-top: 20px;" *ngIf="list.status!='접수'">
+          <input type="button" class="complete-btn" style="background-color: rgb(166,166,166);" (click)="stand()" value="처리대기">
+          <input type="button" class="complete-btn" (click)="complete()" value="처리완료">
+        </div>
+        <div class="flag-send" style="margin-top: 20px;" *ngIf="list.status=='접수'">
+          <input type="button" class="complete-btn" (click)="receipt()" value="처리진행">
+        </div>
+      </div>
+
+    </article>
+  </div>
+</ion-content>

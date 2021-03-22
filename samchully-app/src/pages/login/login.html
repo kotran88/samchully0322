@@ -1,0 +1,114 @@
+<ion-content>
+  <div class="container">
+    <div class="logo">
+      <img src="./assets/imgs/samchully-es-logo.png" alt="">
+    </div>
+    <div class="sirnet">
+      <h3>SirNet v {{ver}}</h3>
+      <p>Samchully internal response Network</p>
+    </div>
+  </div>
+  <div *ngIf="loginflag==1">
+    <div class="login">
+      <div class="join">
+        <a (click)="join()" class="join-btn">엔지니어가입</a>
+      </div>
+      <div class="email">
+        <p class="input-info">이메일</p>
+        <input type="text" class="input-contents" [(ngModel)]="input_id" id="input-email" placeholder="이메일 형식의 아이디를 입력하세요">
+      </div>
+      <div class="password">
+        <p class="input-info">비밀번호</p>
+        <input type="password" class="input-contents" [(ngModel)]="input_pw" id="input-pass" placeholder="8자리 이상의 비밀번호를 입력하세요">
+      </div>
+      <div class="forgot">
+        <div style="float: left;">
+          <input id="checked" type="checkbox">
+          <span>자동로그인</span>
+        </div>
+        <a (click)="find()" class="forgot-pass">비밀번호를 잊어버리셨나요?</a>
+      </div>
+      <div class="signup">
+        <input type="button" class="signup-btn" (click)="login()" value="로그인">
+      </div>
+    </div>
+    <div class="img-container">
+      <img src="./assets/imgs/image.png" alt="">
+    </div>
+  </div>
+  <div *ngIf="loginflag==2" class="join-flag">
+    <div class="join-container">
+      <a class="join-btn">엔지니어가입</a>
+    </div>
+    <div class="join-email">
+      <p class="join-input-info">이메일</p>
+      <div class="div-align">
+        <input type="text" class="join-input-email" id="join-input-email" [(ngModel)]="join_id" placeholder="이메일을 입력하세요">
+      </div>
+    </div>
+    <div class="join-pass">
+      <p class="join-input-info">비밀번호</p>
+      <input type="password" class="join-input-pass" id="join-input-pass" [(ngModel)]="join_pw" placeholder="비밀번호를 입력해주세요(8자 이상)">
+      <input type="password" class="join-input-pass" id="join-input-passcheck"[(ngModel)]="join_pw_check" placeholder="비밀번호를 한번 더 입력해주세요">
+    </div>
+    <div class="join-agency">
+      <p class="join-input-info">소속대리점</p>
+      <div class="div-align">
+        <select name="agency" [(ngModel)]="join_agency" id="agency">
+        </select>
+      </div>
+    </div>
+    <div class="join-info">
+      <p class="join-input-name">성명 / 직책</p>
+      <input type="text" class="join-name" id="join-name" [(ngModel)]="join_name" placeholder="이름을 입력해주세요">
+      <input type="text" class="join-position" id="join-position" [(ngModel)]="join_position" placeholder="">
+    </div>
+    <div class="join-phone">
+      <p class="join-input-info">휴대폰번호</p>
+      <div class="div-align">
+        <input type="number" inputmode="numeric" class="join-phone" id="join-phone" [(ngModel)]="join_phone" placeholder="ex: 0109993333">
+        <input type="button" class="join-authentication" value="인증" (click)="authen()">
+
+      </div>
+    </div>
+    <div class="signup">
+      <input type="button" class="back-btn" (click)="join_back()" value="뒤로가기">
+      <input type="button" class="signup-btn" (click)="join_save()" value="가입">
+    </div>
+  </div>
+  <div *ngIf="loginflag==3" class="find-flag">
+    <div class="find-container">
+      <a class="find-btn">아이디 및 비밀번호 찾기</a>
+    </div>
+    <div class="find-div">
+        <span class="find-tab-id" id="find-tab-id" (click)="find_tab_id(1)">아이디</span>
+        <span class="find-tab-id" id="find-tab-pw" (click)="find_tab_id(2)">비밀번호</span>
+    </div>
+    <div *ngIf="findflag==1" class="find-ID">
+      <div class="find-msg">
+        <p class="find-id-p-fir">아이디 찾기</p>
+        <p class="find-id-p-sec">회원가입시 인증한 휴대폰SMS로<br>이메일주소를 보내드립니다.</p>
+      </div>
+      <div class="find-input">
+        <input type="text" class="find-name" placeholder="실명">
+        <input type="text" class="find-name" placeholder="휴대폰번호">
+      </div>
+    </div>
+    <div *ngIf="findflag==2" class="find-PW">
+      <div class="find-msg">
+        <p class="find-id-p-fir">비밀번호 찾기</p>
+        <p class="find-id-p-sec">가입했던 이메일로 임시비밀번호가 발급됩니다.</p>
+      </div>
+      <div class="find-input">
+        <input type="text" class="find-name" placeholder="이메일주소">
+      </div>
+    </div>
+    <div class="find-send">
+      <input type="button" class="back-btn" (click)="join_back()" value="뒤로가기">
+      <input type="button" class="send-btn" value="전송">
+    </div>
+  </div>
+  <div class="footer main-footer">
+    <p class="foot">Energy Solution & Engineering.</p>
+  </div>
+</ion-content>

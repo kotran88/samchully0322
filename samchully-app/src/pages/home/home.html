@@ -1,0 +1,685 @@
+
+<ion-content style="position: relative; height: 90%;">
+  <div class="logo">
+    <img src="./assets/imgs/samchully-es-logo.png" alt="logo">
+  </div>
+  <div *ngIf="flag==1" class="flag1">
+    <header>
+      <div class="agency-name">{{agency_name}}</div>
+      <div class="user-name">{{engineer_name}} {{engineer_position}}님 반갑습니다.</div>
+    </header>
+    <article class="flag1-article">
+      <div class="contents">
+        <div class="sub-contents" id="take">
+          <table>
+            <th id="circle-table">
+              <!--ngIf써야함-->
+              <div class="foot-number" *ngIf="current_recipt_count" >
+                {{current_recipt_count}}
+              </div>
+              <div class="foot-number" *ngIf="!current_recipt_count">
+                0
+              </div>
+            </th>
+            <tr (click)="go_viewdatapage('현재접수',as_receipt_data)">
+              <div class="circle">
+                <img src="./assets/imgs/headphone.png" alt="">
+              </div>
+            </tr>
+            <tr class="circle-tr">
+              접수건<br>
+              <!-- (현재접수) -->
+            </tr>
+          </table>
+          </div>
+        <div class="sub-contents" id="progress">
+          <table>
+            <th id="circle-table">
+              <div class="foot-number" *ngIf="current_progress_count">
+                {{current_progress_count}}
+              </div>
+              <div class="foot-number" *ngIf="!current_progress_count">
+                0
+              </div>
+            </th>
+            <tr (click)="go_viewdatapage('처리진행',as_request_data)">
+              <div class="circle">
+                <img src="./assets/imgs/wrench.png" alt="">
+              </div>
+            </tr>
+            <tr class="circle-tr">
+              AS처리진행<br>
+              <!-- (처리진행) -->
+            </tr>
+          </table>
+        </div>
+        <div class="sub-contents" id="complete">
+          <table>
+            <th id="circle-table">
+              <div class="foot-number" *ngIf="current_request_count">
+                {{current_request_count}}
+              </div>
+              <div class="foot-number" *ngIf="!current_request_count">
+                0
+              </div>
+            </th>
+            <tr (click)="go_viewdatapage('승인완료',as_complete_data)">
+              <div class="circle">
+                <img src="./assets/imgs/complete.png" alt="">
+              </div>
+            </tr>
+            <tr class="circle-tr">
+              AS처리완료<br>
+              <!-- (승인완료) -->
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="contents">
+        <div class="sub-contents" id="news">
+          <table>
+            <th id="circle-table">
+              <div class="foot-number">
+                <!--ngIf써야함-->
+                1
+              </div>
+            </th>
+            <tr>
+              <div class="circle" (click)="go_gongjipage()">
+                <img src="./assets/imgs/bell.png" class="icon-bell" alt="bell">
+              </div>
+            </tr>
+            <tr class="circle-tr">
+              공지사항
+            </tr>
+          </table>
+        </div>
+        <div class="sub-contents" id="waiting">
+          <table>
+            <th id="circle-table">
+              <div class="foot-number" *ngIf="current_waiting_count">
+                {{current_waiting_count}}
+              </div>
+              <div class="foot-number" *ngIf="!current_waiting_count">
+                0
+              </div>
+            </th>
+            <tr (click)="go_viewdatapage('처리대기',as_waiting_data)">
+              <div class="circle">
+                <img src="./assets/imgs/to-do-list.png" alt="">
+              </div>
+            </tr>
+            <tr class="circle-tr">
+              처리대기
+            </tr>
+          </table>
+        </div>
+        <div class="sub-contents" id="list">
+          <table>
+            <th id="circle-table">
+              <div class="foot-number" *ngIf="current_boru_count">
+                {{current_boru_count}}
+              </div>
+              <div class="foot-number" *ngIf="!current_boru_count">
+                0
+              </div>
+            </th>
+            <tr (click)="go_viewdatapage('승인보류',as_hold_data)">
+              <div class="circle">
+                <img src="./assets/imgs/warning.png" class="icon-warning" alt="warning">
+              </div>
+            </tr>
+            <tr class="circle-tr">
+              승인보류
+            </tr>
+          </table>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div *ngIf="flag==2" class="flag2">
+    <header>
+      <div class="header-msg">AS접수</div>
+    </header>
+    <article class="flag2-article">
+      <div class="flag2-contents">
+        <table class="flag2-table">
+          <tr class="flag2-table-tr">
+            <td colspan=3>접수번호 &nbsp;&nbsp; {{flag2_receipt_num}}</td>
+          </tr>
+          <tr class="flag2-table-tr">
+            <td class="flag2-table-td-first"><img src="./assets/imgs/checkbox-red.png" alt=""></td>
+            <td class="flag2-table-td-second">접수고객</td>
+            <td class="flag2-table-td-third">
+              <input type="text" id="as-add-manager" [(ngModel)]="flag2_name" placeholder="상호 및 담당자" >
+              <button><ion-icon style="width: 30px;
+                max-width: 15%;
+                min-height: 30px;" ios="ios-add" md="md-add" (click)="flag2_add()" id="as-add-icon"></ion-icon></button>
+
+            </td>
+          </tr>
+          <tr class="flag2-table-tr">
+            <td class="flag2-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag2-table-td-second">원격유무</td>
+            <td class="flag2-table-td-third" id="flag2-radio-align">
+              <span class="flag-radio">
+                <input type="radio" name="remote" id="remote-yes" value="가능" checked>
+                <label for="remote-yes">유</label>
+              </span>
+              <span class="flag-radio">
+                <input type="radio" name="remote" id="remote-no" value="불가능">
+                <label for="remote-no">무</label>
+              </span>
+            </td>
+          </tr>
+          <tr class="flag2-table-tr">
+            <td class="flag2-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag2-table-td-second">계약상황</td>
+            <td class="flag2-table-td-third" id="flag2-radio-align">
+              <span class="flag-radio">
+                <input type="radio" name="status" id="status-yp" value="예스파트너" checked>
+                <label for="status-yp">YP</label>
+              </span>
+              <span class="flag-radio">
+                <input type="radio" name="status" id="status-basic" value="일반">
+                <label for="status-basic">일반</label>
+              </span>
+            </td>
+          </tr>
+          <tr class="flag2-table-tr">
+            <td class="flag2-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag2-table-td-second">에러코드</td>
+            <td class="flag2-table-td-third">
+              <select name="flag2-error"  [(ngModel)]="flag2_error" id="flag2-error">
+                <option  *ngFor="let a of errorlist"  value="{{a.remote_code}}"> {{a.remote_code}}</option>
+
+              </select>
+            </td>
+          </tr>
+          <tr class="flag2-table-tr">
+            <td class="flag2-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag2-table-td-second">증상내용</td>
+            <td class="flag2-table-td-third"></td>
+          </tr>
+          <tr class="flag2-table-tr">
+            <td colspan=3 style="width:100%"><input type="text" [(ngModel)]="flag2_contents"
+                class="flag2-input-contents"></td>
+          </tr>
+          <tr class="flag2-table-tr">
+            <td class="flag2-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag2-table-td-second">접수구분</td>
+            <td class="flag2-table-td-third" id="flag2-radio-align">
+              <span class="flag-radio">
+                <input type="radio" name="division" id="division-in" value="내근">
+                <label for="division-in">내근</label>
+              </span>
+              <span class="flag-radio">
+                <input type="radio" name="division" id="division-out" value="외근" checked>
+                <label for="division-out">외근</label>
+              </span>
+            </td>
+          </tr>
+          <tr class="flag2-table-tr">
+            <td class="flag2-table-td-first"><img src="./assets/imgs/checkbox-red.png" alt=""></td>
+            <td class="flag2-table-td-second">처리예정(작업일)</td>
+            <td class="flag2-table-td-third" id="datetime_here">
+              <input type="date" class="flag2-datetime" name="flag2-date" [(ngModel)]="flag2_date" value={{today_Date}}
+                min="2020-01-01" max="{{max_Date}}" (change)="remain_time_set()">
+            </td>
+          </tr>
+          <tr class="flag2-table-tr">
+            <td class="flag2-table-td-first"><img src="./assets/imgs/checkbox-red.png" alt=""></td>
+            <td class="flag2-table-td-second">처리예정(작업시간)</td>
+            <td class="flag2-table-td-third" id="datetime_here">
+              <input type="time" class="flag2-datetime" [(ngModel)]="flag2_time" (change)="remain_time_set()">
+            </td>
+          </tr>
+          <tr class="flag2-table-tr" *ngIf="flag2_date&&flag2_date != ''">
+            <td colspan="3" class="flag2-table-td-last">
+              {{flag2_date}}<br> 예정시간까지 {{remain_time}}시간 남았습니다.
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="flag-send">
+        <input type="button" class="complete-btn" (click)="flag2_save()" value="접수완료">
+        <input type="button" class="update-btn" value="수정">
+      </div>
+    </article>
+  </div>
+
+  <!-- 하단에 AS 처리 버튼 클릭하면 아래가 뜬다. -->
+  <div style="height: 100%;" *ngIf="flag==3" class="flag3">
+    <header style="height: 20% !important;" class="flag3-header">
+      <div class="header-msg">AS진행/완료</div>
+      <div class="as-info">
+        <select name="flag3-condition" id="flag3-condition" value="{{flag3_sort_ch}}" [ngModel]="flag3_sort_ch" (ngModelChange)="flag3_sorting()">
+          <!-- <option value="완료진행별">완료진행별</option> -->
+          <option value="접수시간내림">접수시간내림</option>
+          <option value="접수시간올림">접수시간올림</option>
+          <!-- <option value="AS남은시간내림">AS남은시간내림</option>
+          <option value="AS남은시간올림">AS남은시간올림</option>
+          <option value="접수번호내림">접수번호내림</option>
+          <option value="접수번호올림">접수번호올림</option>
+          <option value="내외근별">내외근별</option>
+          <option value="원격유무별">원격유무별</option>
+          <option value="보증별">보증별(유무상별)</option>
+          <option value="승인별">승인별</option> -->
+        </select>
+      </div>
+      <div class="as-color">
+        <table>
+          <tr>
+            <td>
+              <div class="as-green"></div>
+            </td>
+            <td>완료</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="as-brown"></div>
+            </td>
+            <td>진행</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="as-red"></div>
+            </td>
+            <td>보류</td>
+          </tr>
+        </table>
+      </div>
+    </header>
+    <article style="height: 75% !important;" class="flag3-article">
+      <!--조건에 따라 class이름 분기 필요-->
+      <!--*ngFor 필요-->
+      <div style="height: unset !important;     height: 100% !important;
+      width: 100%;" class="as-list">
+        <table *ngFor="let list of all_receipt_list ; let idx=index" class="as-list-thing" (click)="detail(list,list.receipt_number)">
+          <tbody *ngIf="(list.status != '처리대기') && (list.status != '처리완료') && (list.status != '승인요청')">
+            <tr>
+              <td rowspan=4 class="as-list-td-circle">
+                <input type="hidden" value="{{list.status}}">
+                <div *ngIf="list.status=='접수'||list.status=='처리진행'" class="as-list-brown">{{idx+1}}</div>
+                <div *ngIf="list.status=='승인완료'" class="as-list-green">{{idx+1}}</div>
+                <div *ngIf="list.status=='승인보류'" class="as-list-red">{{idx+1}}</div>
+                <!-- 
+                  <div *ngIf="list.status=='처리대기'" class="as-list-brown">{{idx + 1}}</div>
+                  <div *ngIf="list.status=='처리완료'" class="as-list-brown">{{idx + 1}}</div>
+                -->
+              </td>
+              <td style="font-size:15px">{{list.customer}} / {{list.error_code}} / {{list.receipt_content}}</td>
+            </tr>
+            <tr style="color:#707070; font-size:13px;">
+              <td>{{list.receipt_number}} / {{list.receipt_type}} / {{list.remote_division}} / {{list.warranty}}</td>
+            </tr>
+
+            <tr *ngIf="list.status=='처리진행'" style="color:#707070; font-size:13px;">
+              <td>{{get_remainingtime(list)}}</td>
+            </tr>
+
+            <tr>
+              <td *ngIf="list.status=='승인완료'">AS 완료하였습니다</td>
+              <td *ngIf="list.status=='접수'">AS 접수하였습니다.</td>
+              <td *ngIf="list.status=='처리진행'">AS 진행중입니다.</td>
+              <td *ngIf="list.status=='승인보류'">AS 보류하였습니다.</td>
+            </tr>
+         </tbody>
+        </table>
+
+      </div>
+    </article>
+  </div>
+
+  <!-- 스케줄 페이지 start .... -->
+  <div *ngIf="flag==4" class="flag4">
+    <header>
+      <div class="header-msg">스케줄</div>
+    </header>
+    <article>
+      <ion-grid>
+        <div class="monthintro">
+          <img src="./assets/imgs/left-arrow.png" class="left-arrow" (click)="goToLastMonth()" alt="left-arrow">
+          <a id="month">{{schedule_title}} {{currentYear}} </a>
+          <img src="./assets/imgs/right-arrow.png" class="right-arrow" (click)="goToNextMonth()" alt="right-arrow">
+
+        </div>
+        <ion-row class="calendar-weekday">
+          <ion-col>Sun</ion-col>
+          <ion-col>Mon</ion-col>
+          <ion-col>Tues</ion-col>
+          <ion-col>Wed</ion-col>
+          <ion-col>Thur</ion-col>
+          <ion-col>Fri</ion-col>
+          <ion-col>Sat</ion-col>
+        </ion-row>
+        <div class="calendar-date">
+          <div *ngFor="let lastDay of daysInLastMonth" class="col-1 last-month" style="float: left;" (click)="goToLastMonth()">
+            {{lastDay}}
+          </div>
+          <div *ngFor="let day of daysInThisMonth" class="col-1" style="float: left;">
+            <div>{{day}}</div>
+            <div *ngIf="check_schedule(currentYear,currentMonth,day)!=''" style="height: 30px; overflow: hidden; color: black;
+            background-color: rgb(255,100,100); font-size: 80%; margin: 5px 0;">{{check_schedule(currentYear,currentMonth,day)}}</div>
+            <div *ngIf="check_schedule(currentYear,currentMonth,day)==''" style="height: 40px; overflow: hidden;
+            font-size: 80%;"></div>
+          </div>
+          <div *ngFor="let nextDay of daysInNextMonth" class="col-1 next-month" (click)="goToNextMonth()">
+            {{nextDay}}
+          </div>
+        </div>
+      </ion-grid>
+    </article>
+  </div>
+  <!-- 스케줄 페이지 end .... -->
+  <div *ngIf="flag==5" class="flag5">
+    <div (click)="logout()"
+    style="position: absolute; right: 5px; top: 5px; padding: 5px;
+    border: solid 1px black; width: auto; height: auto;">
+      <span>로그아웃</span>
+    </div>
+    <header>
+      <div class="header-msg">마이페이지</div>
+    </header>
+    <article>
+      <div class="flag5-intro">
+        <div class="engineer-img">
+          <img src="./assets/imgs/bussiness-man.png" alt="user">
+        </div>
+        <div class="engineer-into">
+          <p>{{agency_name}}</p>
+          <p>{{engineer_name}} {{engineer_position}}님</p>
+        </div>
+      </div>
+      <!-- 여기서부터 뿌려준다. start.... -->
+      <div class="my-list">
+        <div class="my-list-title">
+          <ion-icon ios="ios-archive" md="md-archive"></ion-icon>
+          <p>내접수내역</p>
+        </div>
+        <div class="my-current-list">
+          <table *ngFor="let list of as_receipt_data; let idx=index" class="as-list-thing" (click)="go_detail(1,list)">
+            <tr>
+              <td>{{list.customer}}/{{list.error_code}}/{{list.receipt_content}}</td>
+            </tr>
+            <tr>
+              <td>{{list.receipt_number}}/{{list.assigned_company}}/{{list.remote_division}}/{{list.receipt_type}}</td>
+            </tr>
+          </table>
+          <table *ngFor="let list of as_request_data; let idx=index" class="as-list-thing">
+            <tr>
+              <td>{{list.customer}}/{{list.error_code}}/{{list.receipt_content}}</td>
+            </tr>
+            <tr>
+              <td>{{list.receipt_number}}/{{list.assigned_company}}/{{list.remote_division}}/{{list.receipt_type}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="my-list-title">
+          <ion-icon ios="ios-archive" md="md-archive"></ion-icon>
+          <p>내완료처리내역</p>
+        </div>
+        <div class="my-complete-list">
+          <table *ngFor="let list of as_complete_data; let idx=index" class="as-list-thing" (click)="go_detail(2,list)">
+            <tr>
+              <td>{{list.customer}}/{{list.error_code}}/{{list.receipt_content}}</td>
+            </tr>
+            <tr>
+              <td>{{list.receipt_number}}/{{list.assigned_company}}/{{list.remote_division}}/{{list.receipt_type}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="my-list-title">
+          <ion-icon ios="ios-archive" md="md-archive"></ion-icon>
+          <p>내승인보류내역</p>
+        </div>
+        <div class="my-waiting-list">
+          <table *ngFor="let list of as_hold_data; let idx=index" class="as-list-thing" (click)="go_detail(3,list)">
+            <tr>
+              <td>{{list.customer}}/{{list.error_code}}/{{list.receipt_content}}</td>
+            </tr>
+            <tr>
+              <td>{{list.receipt_number}}/{{list.assigned_company}}/{{list.remote_division}}/{{list.receipt_type}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 여기서부터 뿌려준다. end.... -->
+    </article>
+  </div>
+  <div *ngIf="flag==6" class="flag6">
+    <header>
+      <div class="header-msg">고객관리</div>
+    </header>
+    <article class="flag6-article" style="overflow-y: scroll; margin-bottom: 20px;">
+      <div class="flag6-contents">
+        <table class="flag6-table">
+          <tr class="flag6-table-tr">
+            <td colspan=3 id="flag6-table-tr-title">
+              <ion-icon ios="ios-contact" md="md-contact"></ion-icon>
+              <span>고객정보</span>
+            </td>
+          </tr>
+          <tr class="flag6-table-tr">
+            <td class="flag6-table-td-first"><img src="./assets/imgs/checkbox-red.png" alt=""></td>
+            <td class="flag6-table-td-second">접수고객</td>
+            <td class="flag6-table-td-third" style="position: relative;">
+              <input id="customer_search" type="text" [(ngModel)]="flag6_name" placeholder="">
+              <ion-icon name="search" (click)="flag6_searching('customer')"
+              style="position: absolute; top: 0%;
+              right: -10px; width: 30px;
+              height: 30px; padding: 7px;"></ion-icon>
+            </td>
+          </tr>
+
+          <!-- 관리자 메뉴 -->
+          <tr class="flag6-table-tr">
+            <td class="flag6-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag6-table-td-second">담당자성명</td>
+            <td class="flag6-table-td-third" style="position: relative;">
+              <input type="text" [(ngModel)]="flag6_engineer" placeholder="">
+              <!-- <ion-icon name="search" (click)="flag6_searching('engineer')"
+              style="position: absolute; top: 20%;right: 0;"></ion-icon> -->
+            </td>
+          </tr>
+          <tr class="flag6-table-tr">
+            <td class="flag6-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag6-table-td-second">휴대전화</td>
+            <td class="flag6-table-td-third" style="position: relative;">
+              <input type="text" [(ngModel)]="flag6_phone" placeholder="">
+              <!-- <ion-icon name="search" (click)="flag6_searching('phone')"
+              style="position: absolute; top: 20%;right: 0;"></ion-icon> -->
+            </td>
+          </tr>
+          <tr class="flag6-table-tr">
+            <td class="flag6-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag6-table-td-second">대표상호</td>
+            <td class="flag6-table-td-third" style="position: relative;">
+              <input type="text" [(ngModel)]="flag6_store" placeholder="">
+              <!-- <ion-icon name="search" (click)="flag6_searching('store')"
+              style="position: absolute; top: 20%;right: 0;"></ion-icon> -->
+            </td>
+          </tr>
+          <tr class="flag6-table-tr">
+            <td class="flag6-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag6-table-td-second">하위상호</td>
+            <td class="flag6-table-td-third" style="position: relative;">
+              <input type="text" [(ngModel)]="flag6_sub_store" placeholder="">
+              <!-- <ion-icon name="search" (click)="flag6_searching('sub_store')"
+              style="position: absolute; top: 20%;right: 0;"></ion-icon> -->
+            </td>
+          </tr>
+          <tr class="flag6-table-tr">
+            <td class="flag6-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag6-table-td-second">전화번호</td>
+            <td class="flag6-table-td-third" style="position: relative;">
+              <input type="text" [(ngModel)]="flag6_call" placeholder="">
+              <!-- <ion-icon name="search" (click)="flag6_searching('call')"
+              style="position: absolute; top: 20%;right: 0;"></ion-icon> -->
+            </td>
+          </tr>
+          <tr class="flag6-table-tr">
+            <td class="flag6-table-td-first"><img src="./assets/imgs/checkbox-red.png" alt=""></td>
+            <td class="flag6-table-td-second">주소</td>
+            <td class="flag6-table-td-third" style="position: relative;">
+              <input type="text" [(ngModel)]="flag6_address" placeholder="">
+              <!-- <ion-icon name="search" (click)="flag6_searching('address')"
+              style="position: absolute; top: 20%;right: 0;"></ion-icon> -->
+            </td>
+          </tr>
+
+          <tr class="flag6-table-tr" id="flag6-table-tr-title">
+            <td colspan=3>
+              <ion-icon ios="ios-settings" md="md-settings"></ion-icon>
+              <span>제품정보</span>
+            </td>
+          </tr>
+          <tr class="flag6-table-tr">
+            <td class="flag6-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag6-table-td-second">제품명</td>
+            <td class="flag6-table-td-third">
+              <select name="customer-product-name"  id="customer-product-name" (ngModelChange)="flag6_modelchange()">
+                <option *ngFor="let pd of flag6_productlist" value={{pd}}>{{pd}}</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="flag6-table-tr">
+            <td class="flag6-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag6-table-td-second">모델명</td>
+            <td class="flag6-table-td-third">
+              <select name="customer-model-name" [(ngModel)]="flag6_model" id="customer-model-name">
+                <option *ngFor="let md of flag6_modellist" value={{md}}>{{md}}</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="flag6-table-tr">
+            <td class="flag6-table-td-first"><img src="./assets/imgs/checkbox-green.png" alt=""></td>
+            <td class="flag6-table-td-second">보증기간</td>
+            <td class="flag6-table-td-third" id="flag6-table-td-third-guarantee">
+              <span class="flag-radio">
+                <input type="radio" name="guarantee" id="guarantee-in" value="기간 내" checked>
+                <label for="guarantee-in">IN</label>
+              </span>
+              <span class="flag-radio">
+                <input type="radio" name="guarantee" id="guarantee-out" value="기간 외">
+                <label for="guarantee-out">OUT</label>
+              </span>
+            </td>
+          </tr>
+          <tr class="flag6-table-tr" id="flag6-table-tr-title">
+            <td colspan=2>
+              <ion-icon ios="ios-briefcase" md="md-briefcase"></ion-icon>
+              <span>수리이력</span>
+            </td>
+          </tr>
+        </table>
+        <div class="my-waiting-list">
+
+          <table class="my-list-thing" *ngFor="let rl of flag6_repairlist; let i = index;">
+            <tr>
+              <td>{{rl.customer}}/{{rl.error_code}}/{{rl.receipt_content}}</td>
+            </tr>
+            <tr>
+              <td>{{rl.receipt_number}}/{{rl.assigned_company}}/{{rl.remote_division}}/{{rl.receipt_type}}</td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+      <div class="flag-send">
+        <input type="button" class="update-btn" (click)="flag6_save()" value="저장">
+        <input type="button" class="cancel-btn" (click)="flag6_cancel()" value="취소">
+
+      </div>
+    </article>
+  </div>
+  <div *ngIf="flag==7" class="flag7">
+    <header>
+      <div class="header-msg">고객관리</div>
+    </header>
+    <ion-label  style="margin:0px !important; text-align: center;">
+      <ion-icon style="float: left; font-size: 30px; margin: 0 10px;"
+      name="arrow-back"  (click)="search_cancel()"></ion-icon>
+      <input id="#f7_search_input" [(ngModel)]="flag7_searchtext" placeholder="검색" style="width: 50%;"/>
+      <button (click)="look_up(flag7_searchtext)">
+        <ion-icon style="font-size: 25px;" name="search"></ion-icon>
+      </button>
+    </ion-label>
+
+    <ion-item-divider></ion-item-divider>
+    <ion-label style="overflow-y: scroll;" id="f7_search_result" class="f7_result" *ngFor="let f7_ls of flag7_searchlist; let i = index;" (click)="flag7_resultget(f7_ls)">
+      {{f7_ls.name}} / {{f7_ls.address}}
+    </ion-label>
+  </div>
+</ion-content>
+<footer class="main-footer" style="z-index: 1; min-height:80px">
+  <div class="foot-menu">
+    <div class="foot" id="home" (click)="foot_icon_switching(1)">
+      <table>
+        <th id=""></th>
+        <tr>
+          <div class="foot-icon">
+            <ion-icon id="switching1" ios="ios-home-outline" md="md-home"></ion-icon>
+          </div>
+        </tr>
+        <tr class="icon-tr">
+          홈
+        </tr>
+      </table>
+    </div>
+    <div class="foot" id="take-over" (click)="foot_icon_switching(2)">
+      <table>
+        <th id=""></th>
+        <tr>
+          <div class="foot-icon">
+            <ion-icon id="switching2" ios="ios-headset" md="md-headset"></ion-icon>
+          </div>
+        </tr>
+        <tr class="icon-tr">
+          접수
+        </tr>
+      </table>
+    </div>
+    <div class="foot" id="as-progess" (click)="foot_icon_switching(3)">
+      <table>
+        <th id=""></th>
+        <tr>
+          <div class="foot-icon">
+            <ion-icon id="switching3" ios="ios-build" md="md-build"></ion-icon>
+          </div>
+        </tr>
+        <tr class="icon-tr">
+          AS처리
+        </tr>
+      </table>
+    </div>
+    <div class="foot" id="schedule" (click)="foot_icon_switching(4)">
+      <table>
+        <th id=""></th>
+        <tr>
+          <div class="foot-icon">
+            <ion-icon id="switching4" ios="ios-calendar" md="md-calendar"></ion-icon>
+          </div>
+        </tr>
+        <tr class="icon-tr">
+          스케줄
+        </tr>
+      </table>
+    </div>
+    <div class="foot" id="my-page" (click)="foot_icon_switching(5)">
+      <table>
+        <th id=""></th>
+        <tr>
+          <div class="foot-icon">
+            <ion-icon id="switching5" ios="ios-person" md="md-person"></ion-icon>
+          </div>
+        </tr>
+        <tr class="icon-tr">
+          마이페이지
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</footer>

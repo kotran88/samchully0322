@@ -1,0 +1,61 @@
+{
+  "_from": "iamport-cordova",
+  "_id": "iamport-cordova@0.9.3",
+  "_inBundle": false,
+  "_integrity": "sha512-nBKr9QtuE8Re2kOx7DQP9X0eooEbHmTRWXsD2LokPNvitJamP+jvMnPC1UnLWlYXnCaw0S8RGyNBN/+D3A9PfA==",
+  "_location": "/iamport-cordova",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "iamport-cordova",
+    "name": "iamport-cordova",
+    "escapedName": "iamport-cordova",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/iamport-cordova/-/iamport-cordova-0.9.3.tgz",
+  "_shasum": "66bf45991a62b334a3cd8625cec2e7e045b10e24",
+  "_spec": "iamport-cordova",
+  "_where": "/Users/pedrojung/Downloads/appNamefornojo",
+  "author": {
+    "name": "Soree Choi",
+    "email": "mymusese@gmail.com",
+    "url": "https://github.com/SoleeChoi"
+  },
+  "bugs": {
+    "url": "https://github.com/iamport/iamport-cordova/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "iamport-cordova",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "아임포트 코르도바용 일반, 정기결제 및 휴대폰 본인인증 플러그인입니다.",
+  "homepage": "https://github.com/iamport/iamport-cordova",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "iamport-cordova",
+    "iamport",
+    "payment",
+    "certification"
+  ],
+  "license": "MIT",
+  "name": "iamport-cordova",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamport/iamport-cordova.git"
+  },
+  "version": "0.9.3"
+}

@@ -1,0 +1,35 @@
+page-gongji {
+
+  .listbox{
+    margin: 0 10px;
+    ion-item{
+      padding: 0;
+      text-align: center;
+      .item-inner{
+        padding: 0 !important;
+      }
+      ion-label{
+        margin: 0;
+      }
+    }
+  }
+  .boxlist{
+    border: solid 1px black;
+    margin: 10px 0;
+    border-radius: 10px;
+  }
+
+  .lab1{
+    max-width: 40px !important;
+  }
+  .lab2{
+    max-width: 80px !important;
+    padding: 0 10px;
+  }
+  .lab3{
+    padding: 0 10px;
+  }
+  .lab4{
+    max-width: 100px !important;
+  }
+}

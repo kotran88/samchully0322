@@ -1,0 +1,295 @@
+page-login {
+  ion-content {
+    box-sizing: border-box;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 30%;
+  }
+
+  .logo {
+    text-align: center;
+    margin-top: 1.6rem;
+
+    img {
+      max-width: 60%;
+    }
+  }
+
+  .logoimg {
+    height: 100%;
+  }
+
+  .sirnet {
+    text-align: center;
+
+    p {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      color: #a7a7a7;
+    }
+
+    h3 {
+      margin-top: 1rem;
+      margin-bottom: 1rem
+    }
+  }
+
+  .login {
+    display: flex;
+    height: 40%;
+    padding: 2rem;
+    flex-direction: column;
+
+    a {
+      color: #488aff;
+    }
+
+    a:-webkit-any-link {
+      text-decoration: none !important;
+    }
+  }
+
+  .join {
+    text-align: end;
+  }
+
+  .email,
+  .password {
+    color: #7a7a7a;
+  }
+
+  .input-contents {
+    text-align: center;
+    width: 100%;
+    height: 4rem;
+    border-radius: 2rem;
+    border: 1px solid #e4e4e4;
+  }
+
+  .input-info {
+    margin-block-start: 0.5em !important;
+    margin-block-end: 0.5em !important;
+  }
+
+  .forgot {
+    text-align: end;
+    margin-block-start: 0.5em !important;
+    margin-block-end: 0.5em !important;
+
+    a {
+      color: #7a7a7a;
+    }
+  }
+
+  .img-container {
+    height: 30%;
+    padding-top: 2rem;
+    text-align: center;
+  }
+
+  .footer {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5%;
+    color: #fff;
+    background-color: #1f488f;
+  }
+
+  .join-flag {
+    height: 65%;
+    padding: 0 3rem;
+    overflow-y: scroll;
+  }
+
+  .div-align {
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
+
+  .join-container {
+    text-align: center;
+  }
+
+  .join-input-info {
+    color: #7a7a7a;
+    margin-block-start: 0.5em !important;
+    margin-block-end: 0.5em !important;
+  }
+
+  .join-input-email {
+    position: relative;
+    width: 100%;
+    height: 3.5rem;
+    margin-block-start: 0.5em !important;
+    margin-block-end: 0.5em !important;
+  }
+
+  .join-authentication {
+    position: relative;
+    margin-left: -4.2rem;
+    height: 3rem;
+    background-color: #7a7a7a;
+    color: #fff;
+    border-color: transparent !important;
+  }
+
+  .join-input-pass {
+    width: 100%;
+    height: 3.5rem;
+    margin-block-start: 0.1em !important;
+    margin-block-end: 0.1em !important;
+  }
+
+  .join-pass {
+    margin-block-end: 0.5em !important;
+  }
+
+  .join-input {
+    width: 100%;
+    height: 3.5rem;
+    margin-block-start: 0.5em !important;
+    margin-block-end: 0.5em !important;
+  }
+
+  #agency {
+    width: 100%;
+    height: 3.5rem;
+    color: #7a7a7a;
+  }
+
+  .join-name {
+    width: 65%;
+    height: 3.5rem;
+
+  }
+
+  .join-input-name {
+    color: #7a7a7a;
+    margin-block-start: 0.5em !important;
+    margin-block-end: 0.5em !important;
+  }
+
+  .join-position {
+    width: 34%;
+
+    height: 3.5rem;
+  }
+
+  .join-phone {
+    width: 100%;
+    height: 3.5rem;
+  }
+
+  .signup,.find-send {
+    margin-top: 10%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .signup-btn {
+      margin: 0 3px;
+      background-color: #488aff;
+      color: #fff;
+      width: 10rem;
+      height: 3rem;
+      border-color: transparent !important;
+    }
+
+    .back-btn {
+      margin: 0 3px;
+      background-color: #7a7a7a;
+      color: #fff;
+      width: 10rem;
+      height: 3rem;
+      border-color: transparent !important;
+    }
+    .send-btn {
+        margin: 0 3px;
+        background-color: #488aff;
+        color: #fff;
+        width: 10rem;
+        height: 3rem;
+        border-color: transparent !important;
+      }
+  }
+
+  .find-container {
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .find-div {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #e4e4e4;
+  }
+
+  .find-tab-id {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+  }
+
+  #find-tab-id {
+    background-color: #1f488f;
+    color: #fff;
+  }
+
+  #find-tab-pw {
+    background-color: #488aff;
+    color: #e4e4e4;
+  }
+
+  .find-id-p-fir {
+    padding: 0 15px;
+    font-weight: 900;
+    font-size: 17px;
+    margin-block-end: 0 !important;
+  }
+
+  .find-id-p-sec {
+    padding: 0 15px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #8d8d8d;
+    margin-block-start: 0 !important;
+  }
+
+  .find-msg {
+      padding:3rem;
+    height: 15rem;
+  }
+
+  .find-name {
+    display: flex;
+    margin: 10px auto;
+    width: 70%;
+    height: 4.5rem;
+    border-bottom: 1px solid #000;
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+
+
+}
